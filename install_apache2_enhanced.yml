@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+    #- name: update repository index
+    #dnf:
+    # update_cache: yes
+    # when: ansible_distribution in ["centOS", "Fedora"]  
+        #when: ansible_distribution == "Ubuntu" 
+        #when: ansible_distribution_version == "8.2"
+
+  - name: install nginx & php packages
+    dnf:
+      name:
+        - nginx
+        - php
+      state: present
+      update_cache: yes
+    when: ansible_distribution in ["Fedora", "CentOS"]
+  
+  - name: install nginx & php packages
+    apt:
+      name:
+        - nginx
+        - php
+      state: latest
+      update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debain"]
+

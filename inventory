@@ -1,6 +1,6 @@
 
-192.168.2.210
-
+192.168.2.210 apache_package=httpd php_package=php
+#192.168.2.2 apache_package=apache2 php-package=libapache2-mod-php #in case we have a ubuntu system
 
 
 
