@@ -1,6 +1,13 @@
+#[web_servers]	#it doesnt exist, just practice purpose
+#192.168.3.9	
 
-192.168.2.210 apache_package=httpd php_package=php
-#192.168.2.2 apache_package=apache2 php-package=libapache2-mod-php #in case we have a ubuntu system
+#[db_servers]   #also does not exist
+#192.168.4.2
+
+
+[active_servers] #the only active server LOL
+ 192.168.2.210
+
 
 
 
