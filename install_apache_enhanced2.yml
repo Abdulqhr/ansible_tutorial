@@ -14,3 +14,5 @@
       state: latest
       update_cache: yes 
 
+  #NOTE:
+  #the inventory file has to be modified, check in the editor file named (install_apache_enhanced2.yml 

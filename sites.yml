@@ -5,15 +5,17 @@
   pre_tasks: 
 
   - name: install updates  on CentOS and Fedora servers
-    dnf: 
-        update_only: yes
-        update_cache: yes
+    tags: always
+    yum:  
+      update_only: yes
+      update_cache: yes
     when: ansible_distribution in ["CentOS", "Fedora"]
 
   - name: isntall updates on ubuntu or debian
+    tags: always
     apt: 
-        update_only: yes
-        update_cache: yes
+      update_only: yes
+      update_cache: yes
     when: ansible_distribution in ["Ubuntu", "Debian"]
 
 
@@ -23,6 +25,7 @@
   tasks: 
 
   - name: install apache and php for Ubuntu servers
+    tags: apache, ubuntu, apache2
     apt:
       name:
         - apache2
@@ -31,6 +34,7 @@
     when: ansible_distribution == "Ubuntu"
 
   - name: install apache and php for CentOS servers
+    tags: apache, centos, httpd
     dnf:
       name:
         - httpd
