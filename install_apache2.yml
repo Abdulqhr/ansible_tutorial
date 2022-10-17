@@ -4,31 +4,31 @@
   become: true
   tasks:
 
-  - name: update repository index
+  - name: update repository index on CentOS and Fedora
     dnf:
       update_cache: yes
     when: ansible_distribution in ["centOS", "Fedora"]  
         #when: ansible_distribution == "Ubuntu" 
         #when: ansible_distribution_version == "8.2"
-  - name: install nginx package
+  - name: install nginx package CentOS and Fedora
     dnf:
       name: nginx
       state: latest
-    when: ansible_distribution in ["Debain", "CentOS"]
+    when: ansible_distribution in ["Fedora", "CentOS"]
   
-  - name: install php
+  - name: install php on CentOS and Fedora
     dnf:
      name: php
      state: latest
     when: ansible_distribution in ["CentOS", "Fedora"]
 
-  - name: install nginx package
+  - name: install nginx package on Ubuntu and Debian
     apt:
       name: nginx
       state: latest
-    when: ansible_distribution in ["Ubuntu", "Debain"]
+    when: ansible_distribution in ["Ubuntu", "Debian"]
 
-  - name: install php
+  - name: install php on Ubuntu and Debian
     apt:
       name: php
       state: latest

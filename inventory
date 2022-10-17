@@ -1,12 +1,12 @@
-#[web_servers]	#it doesnt exist, just practice purpose
-#192.168.3.9	
+[web_servers]	#the debian server
+192.168.2.157	
 
 #[db_servers]   #also does not exist
 #192.168.4.2
 
 
-[active_servers] #the only active server LOL
- 192.168.2.210
+[active_servers] 
+ 192.168.2.160
 
 
 

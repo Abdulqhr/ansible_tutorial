@@ -14,15 +14,9 @@
   - name: isntall updates on ubuntu or debian
     tags: always
     apt: 
-      update_only: yes
       update_cache: yes
-    when: ansible_distribution in ["Ubuntu", "Debian"]
+    when: ansible_distribution in ["Ubuntu", "Debian"] 
 
-
-
-- hosts: active_servers
-  become: true
-  tasks: 
 
   - name: install apache and php for Ubuntu servers
     tags: apache, ubuntu, apache2
@@ -31,7 +25,8 @@
         - apache2
         - libapache2-mod-php
       state: latest
-    when: ansible_distribution == "Ubuntu"
+    when: ansible_distribution == "Debian"
+
 
   - name: install apache and php for CentOS servers
     tags: apache, centos, httpd
@@ -42,12 +37,39 @@
       state: latest
     when: ansible_distribution == "Fedora"
   
-  
-  - name: copy default html file for site
-    tags: apache,apache2,httpd
+
+- hosts: web_servers
+  become: true
+  tasks: 
+
+  - name: copy default html file to servers
     copy:
       src: default_sites.html
       dest: /var/www/html/index.html
-      owner: adam
-      group: adam
+      owner: abdul
+      group: abdul
       mode: 0644
+
+
+- hosts: active_servers
+  become: true
+  gather_facts: no
+  tasks:
+
+  - name: install mariadb package (fedora)
+    dnf:
+      name: mariadb
+      state: latest
+
+  - name: install unzip (fedora)
+    package: 
+      name: unzip
+
+  - name: install terraform (fedora)
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      mode: 0755
+      owner: abdul
+      group: abdul

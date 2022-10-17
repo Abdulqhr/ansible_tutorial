@@ -6,7 +6,7 @@
   tasks:
 
   - name: installing updates
-    yum:
+    package:
       name: '*'
       state: latest
       
